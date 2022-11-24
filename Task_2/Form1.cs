@@ -22,92 +22,73 @@ namespace Task_2
         public Form1()
         {
             InitializeComponent();
-
-            treeView1.BeforeSelect += treeView1_BeforeSelect;
-            treeView1.BeforeExpand += treeView1_BeforeExpand;
-            // заполняем дерево дисками
-            FillDriveNodes();
         }
 
-        // событие перед раскрытием узла
-        void treeView1_BeforeExpand(object sender, TreeViewCancelEventArgs e)
+        protected override void OnLoad(EventArgs e)
         {
-            e.Node.Nodes.Clear();
-            string[] dirs;
-            try
-            {
-                if (Directory.Exists(e.Node.FullPath))
-                {
-                    Text = e.Node.FullPath;
-                    dirs = Directory.GetDirectories(e.Node.FullPath);
-                    if (dirs.Length != 0)
-                    {
-                        for (int i = 0; i < dirs.Length; i++)
-                        {
-                            TreeNode dirNode = new TreeNode(new DirectoryInfo(dirs[i]).Name);
-                            FillTreeNode(dirNode, dirs[i]);
-                            e.Node.Nodes.Add(dirNode);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex) { }
+            Libs.SetLocalDrive(ef_treeView);
+
+            ef_treeView.AfterSelect += Ef_treeView_AfterSelect;
+
+            ef_listView.MouseDoubleClick += открытьToolStripMenuItem_Click;
+
+            ef_menu_open.Click += открытьToolStripMenuItem_Click;
+            ef_menu_close.Click += выйтиИзПрограммыToolStripMenuItem_Click;
+
+            ef_menu_about.Click += Ef_menu_about_Click;
         }
 
-        // событие перед выделением узла
-        void treeView1_BeforeSelect(object sender, TreeViewCancelEventArgs e)
+        private void Ef_menu_about_Click(object sender, EventArgs e)
         {
-            e.Node.Nodes.Clear();
-            string[] dirs;
-            try
-            {
-                if (Directory.Exists(e.Node.FullPath))
-                {
-                    Text = e.Node.FullPath;
-                    dirs = Directory.GetDirectories(e.Node.FullPath);
-                    if (dirs.Length != 0)
-                    {
-                        for (int i = 0; i < dirs.Length; i++)
-                        {
-                            TreeNode dirNode = new TreeNode(new DirectoryInfo(dirs[i]).Name);
-                            FillTreeNode(dirNode, dirs[i]);
-                            e.Node.Nodes.Add(dirNode);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex) { }
+            string str = "Проводник v 1.0\r\r Разработчик: Поротиков Игорь Олегович\r";
+            MessageBox.Show(str, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-        // получаем все диски на компьютере
-        private void FillDriveNodes()
+        /// <summary>
+        /// Обработчик собития выбора элемента в Tree View
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Ef_treeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            try
+            string newPath = e.Node.FullPath.Replace("\\\\", "\\");
+            ef_sbl_path.Text = $"Путь: {newPath}";
+
+            if (e.Node.GetNodeCount(true) == 0)
             {
-                foreach (DriveInfo drive in DriveInfo.GetDrives())
-                {
-                    TreeNode driveNode = new TreeNode { Text = drive.Name };
-                    FillTreeNode(driveNode, drive.Name);
-                    treeView1.Nodes.Add(driveNode);
-                }
+                Libs.GetSubDir(e.Node, e.Node.FullPath);
             }
-            catch (Exception ex) { }
+
+            Libs.GetDirectories(e.Node.FullPath, ef_listView);
+
+            ef_sbl_quantity.Text = $"Колличество эллементов: {ef_listView.Items.Count.ToString()}";
         }
 
-        // получаем дочерние узлы для определенного узла
-        private void FillTreeNode(TreeNode driveNode, string path)
+        private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
+            string path = ef_treeView.SelectedNode.FullPath + '\\' + ef_listView.FocusedItem.Text;
+
+            //Проверка существования файла
+            if (File.Exists(path))
             {
-                string[] dirs = Directory.GetDirectories(path);
-                foreach (string dir in dirs)
-                {
-                    TreeNode dirNode = new TreeNode();
-                    dirNode.Text = dir.Remove(0, dir.LastIndexOf("\\") + 1);
-                    driveNode.Nodes.Add(dirNode);
-                }
+                //Комманда для открытия файла приложением по умолчанию
+                System.Diagnostics.Process.Start(path);
             }
-            catch (Exception ex) { }
+            else
+            {
+                Libs.SearchNode(ef_treeView, path);
+                Libs.GetDirectories(path, ef_listView);
+            }
+        }
+
+        /// <summary>
+        /// Обработка нажатия кнопы выйти из программы
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void выйтиИзПрограммыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Close();
         }
     }
 }
