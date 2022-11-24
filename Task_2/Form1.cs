@@ -26,47 +26,42 @@ namespace Task_2
 
         protected override void OnLoad(EventArgs e)
         {
-            Libs.SetLocalDrive(ef_treeView);
-
-            ef_treeView.AfterSelect += Ef_treeView_AfterSelect;
-
-            ef_listView.MouseDoubleClick += открытьToolStripMenuItem_Click;
-
-            ef_menu_open.Click += открытьToolStripMenuItem_Click;
-            ef_menu_close.Click += выйтиИзПрограммыToolStripMenuItem_Click;
-
-            ef_menu_about.Click += Ef_menu_about_Click;
-        }
-
-        private void Ef_menu_about_Click(object sender, EventArgs e)
-        {
-            string str = "Проводник v 1.0\r\r Разработчик: Поротиков Игорь Олегович\r";
-            MessageBox.Show(str, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            Libs.SetLocalDrive(treeView);
         }
 
         /// <summary>
-        /// Обработчик собития выбора элемента в Tree View
+        /// Обработчик собития выбора элемента в TreeView
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void Ef_treeView_AfterSelect(object sender, TreeViewEventArgs e)
+        private void TreeViewSelect(object sender, TreeViewEventArgs e)
         {
             string newPath = e.Node.FullPath.Replace("\\\\", "\\");
-            ef_sbl_path.Text = $"Путь: {newPath}";
+            toolStripStatusLabel_path.Text = $"Путь: {newPath}";
 
             if (e.Node.GetNodeCount(true) == 0)
             {
                 Libs.GetSubDir(e.Node, e.Node.FullPath);
             }
 
-            Libs.GetDirectories(e.Node.FullPath, ef_listView);
+            Libs.GetDirectories(e.Node.FullPath, listView);
 
-            ef_sbl_quantity.Text = $"Колличество эллементов: {ef_listView.Items.Count.ToString()}";
+            toolStripStatusLabel_quantityElement.Text = $"Колличество эллементов: {listView.Items.Count}";
         }
 
-        private void открытьToolStripMenuItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// открытие папки и диска
+        /// </summary>
+        private void OpenFile(object sender, EventArgs e)
         {
-            string path = ef_treeView.SelectedNode.FullPath + '\\' + ef_listView.FocusedItem.Text;
+            string path = "";
+
+            try
+            {
+                path = treeView.SelectedNode.FullPath + '\\' + listView.FocusedItem.Text;
+            }
+            catch (Exception)
+            {
+                return;
+            }
 
             //Проверка существования файла
             if (File.Exists(path))
@@ -76,19 +71,17 @@ namespace Task_2
             }
             else
             {
-                Libs.SearchNode(ef_treeView, path);
-                Libs.GetDirectories(path, ef_listView);
+                Libs.SearchNode(treeView, path);
+                Libs.GetDirectories(path, listView);
             }
         }
 
         /// <summary>
-        /// Обработка нажатия кнопы выйти из программы
+        /// выход из программы
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void выйтиИзПрограммыToolStripMenuItem_Click(object sender, EventArgs e)
+        private void Exit(object sender, EventArgs e)
         {
-            this.Close();
+            Close();
         }
     }
 }

@@ -117,21 +117,18 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="ef_mainMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="menuStrip_menu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="ef_contestMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>142, 17</value>
+  <metadata name="imageList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>153, 19</value>
   </metadata>
-  <metadata name="ef_iList.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>281, 17</value>
-  </metadata>
-  <data name="ef_iList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
+  <data name="imageList.ImageStream" mimetype="application/x-microsoft.net.object.binary.base64">
     <value>
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAADU
-        CAAAAk1TRnQBSQFMAgEBAgEAAQgBAAEIAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        CAAAAk1TRnQBSQFMAgEBAgEAASgBAAEoAQABEAEAARABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         AwABQAMAARADAAEBAQABCAYAAQQYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -160,18 +157,18 @@
         AQABzAH/AWYBAAL/AZkBAAL/AcwBAAJmAf8BAAFmAf8BZgEAAWYC/wEAAf8CZgEAAf8BZgH/AQAC/wFm
         AQABIQEAAaUBAANfAQADdwEAA4YBAAOWAQADywEAA7IBAAPXAQAD3QEAA+MBAAPqAQAD8QEAA/gBAAHw
         AfsB/wEAAaQCoAEAA4ADAAH/AgAB/wMAAv8BAAH/AwAB/wEAAf8BAAL/AgAD/wIAAfMBUgoyASwBcwEA
-        Af8B8gHwAgcH7wEHAbwB8QH0IAAB/wEyDFMBWQEcAQAC/wLuCAcB9wL/IAAB8A5TAVkCAAH0AfMHWQFT
-        AVIBByIAAbwPUwIAAfQB8wg4AVkBByIAAbwOUwFZAgAB9AHzCDgBWQHuIgABvANTDFkCAAL0CDgBWQG8
+        Af8B8gHwAgcH7wEHAbwB8QH0IAAB/wEyDFMBWQEcAQAC/wK8CAcB9wL/IAAB8A5TAVkCAAH0AfMHWQFT
+        AVIBByIAAbwPUwIAAfQB8wg4AVkBByIAAbwOUwFZAgAB9AHzCDgBWQG8IgABvANTDFkCAAL0CDgBWQG8
         IgABvA9ZAgAC9Ag4AVkBvCIAAbwPWQIAAvQCWQY4AVkBvCIAAbwBdAxZAXkBUwIAAvQDWQU4AVkBvCIA
         AbwBdAEHBlkBegIHAfcB7wEHAVMCAAL0BVkDOAFZAbwiAAG8AZkB8AaZAu8BvAH3Ae8BvAFTAgAC9AJ6
         BFkDWAHvIgABvAGZAfEI7wHxAu8B8AFTAgAC9AN6AlkBWAH/AfQBvAH/IgABvAFTCvIC8AHxAVkCAAH0
-        AfUBmgR6AXkB9AG8Af8jAAEbAVkBUwGaARoJ8gHzAVkCAAH0Af8EmgF6AXkBvAH/JQAEWQEaB/QB8wFZ
+        Af8BmgR6AXkB9AG8Af8jAAEbAVkBUwGaARoJ8gHzAVkCAAH0Af8EmgF6AXkBvAH/JQAEWQEaB/QB8wFZ
         ARoCAAH/A/ADvAHvAf8nAAGaC3oBGzEAAUIBTQE+BwABPgMAASgDAAFAAwABEAMAAQEBAAEBBQABgBcA
         A/8BAAGAAQEIAAGABwABwAEDBgABwAEDBgABwAEDBgABwAEDBgABwAEDBgABwAEDBgABwAEDBgABwAED
         BgABwAEDBgABwAEDBgABwAEHBgABwAEPBAABgAEAAcABHwQAAcABAQL/BAAL
 </value>
   </data>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>369, 17</value>
+  <metadata name="statusStrip.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>246, 17</value>
   </metadata>
 </root>
