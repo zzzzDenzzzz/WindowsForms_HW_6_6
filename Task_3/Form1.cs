@@ -33,8 +33,11 @@ namespace Task_3
         /// </summary>
         private void button_addSubMenu_Click(object sender, EventArgs e)
         {
-            item.DropDownItems.Add(new ToolStripMenuItem(textBox_subItem.Text));
-            menu.Items.Add(item);
+            if (textBox_subItem.Text != "")
+            {
+                item.DropDownItems.Add(new ToolStripMenuItem(textBox_subItem.Text));
+                menu.Items.Add(item);
+            }
         }
     }
 }
